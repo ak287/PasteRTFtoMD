@@ -1,0 +1,107 @@
+{
+  "name": "paste-rtf-to-md",
+  "displayName": "Paste Rich Text to Markdown",
+  "description": "Paste rich text from Microsoft Word and browsers as clean Markdown.",
+  "version": "0.0.1",
+  "publisher": "ak",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Markdown",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onCommand:richPaste.pasteAsMarkdown",
+    "onCommand:richPaste.showClipboardDebugInfo"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "richPaste.pasteAsMarkdown",
+        "title": "Paste Rich Text as Markdown",
+        "category": "Rich Paste"
+      },
+      {
+        "command": "richPaste.showClipboardDebugInfo",
+        "title": "Show Clipboard Debug Info",
+        "category": "Rich Paste"
+      }
+    ],
+    "configuration": {
+      "title": "Rich Paste",
+      "properties": {
+        "richPaste.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable rich text to Markdown paste conversion."
+        },
+        "richPaste.languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "markdown"
+          ],
+          "description": "Language IDs where rich paste conversion is active."
+        },
+        "richPaste.mimePriority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "text/html",
+            "text/rtf",
+            "text/plain"
+          ],
+          "description": "Preferred clipboard MIME types, in order."
+        },
+        "richPaste.conversion.flavor": {
+          "type": "string",
+          "enum": [
+            "gfm",
+            "commonmark"
+          ],
+          "default": "gfm",
+          "description": "Markdown flavor used for conversion output."
+        },
+        "richPaste.conversion.preserveLineBreaks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Preserve soft line breaks from source HTML as Markdown hard breaks."
+        },
+        "richPaste.conversion.enableTables": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable GFM table conversion when source contains HTML tables."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run test:unit",
+    "test:unit": "npm run compile && mocha \"out/test/unit/**/*.test.js\"",
+    "test:integration": "npm run compile && node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.17.24",
+    "@types/turndown": "^5.0.5",
+    "@types/vscode": "^1.96.0",
+    "@vscode/test-electron": "^2.5.2",
+    "glob": "^11.0.1",
+    "mocha": "^11.1.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "turndown": "^7.2.1",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
+}
