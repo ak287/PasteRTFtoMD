@@ -64,18 +64,20 @@ export function deactivate(): void {
 }
 
 async function executePasteAsMarkdown(): Promise<void> {
-  const attempts: unknown[] = [
-    { kind: RICH_PASTE_KIND },
-    { kind: RICH_PASTE_KIND.value },
-    RICH_PASTE_KIND.value
-  ];
+  const editor = vscode.window.activeTextEditor;
+  const config = getRichPasteConfig();
 
-  for (const argument of attempts) {
+  const isSupported =
+    editor != null &&
+    config.enabled &&
+    config.languages.includes(editor.document.languageId.toLowerCase());
+
+  if (isSupported) {
     try {
-      await vscode.commands.executeCommand('editor.action.pasteAs', argument);
+      await vscode.commands.executeCommand('editor.action.pasteAs', { kind: RICH_PASTE_KIND.value });
       return;
     } catch {
-      // Try next invocation shape.
+      // Fall through to regular paste.
     }
   }
 

@@ -1,6 +1,6 @@
 ﻿import TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
-import { RichPasteConversionConfig } from './config';
+import { RichPasteConversionConfig } from './config-types';
 
 export interface ConversionInput {
   mimeType: string;

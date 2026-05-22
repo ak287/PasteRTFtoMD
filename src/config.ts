@@ -1,19 +1,6 @@
 ﻿import * as vscode from 'vscode';
-
-export type MarkdownFlavor = 'gfm' | 'commonmark';
-
-export interface RichPasteConversionConfig {
-  flavor: MarkdownFlavor;
-  preserveLineBreaks: boolean;
-  enableTables: boolean;
-}
-
-export interface RichPasteConfig {
-  enabled: boolean;
-  languages: string[];
-  mimePriority: string[];
-  conversion: RichPasteConversionConfig;
-}
+import type { MarkdownFlavor, RichPasteConfig } from './config-types';
+export type { MarkdownFlavor, RichPasteConversionConfig, RichPasteConfig } from './config-types';
 
 const ROOT = 'richPaste';
 

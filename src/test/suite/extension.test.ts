@@ -1,9 +1,23 @@
-﻿import * as assert from 'assert';
+import * as assert from 'assert';
+import * as fs from 'fs';
+import * as path from 'path';
 import * as vscode from 'vscode';
+
+interface ExtensionManifest {
+  publisher: string;
+  name: string;
+}
+
+function getExtensionIdentifier(): string {
+  const manifestPath = path.resolve(__dirname, '../../../package.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as ExtensionManifest;
+  return `${manifest.publisher}.${manifest.name}`;
+}
 
 describe('Extension Test Suite', () => {
   it('registers commands on activation', async () => {
-    const extension = vscode.extensions.getExtension('ak.paste-rtf-to-md');
+    const extensionId = getExtensionIdentifier();
+    const extension = vscode.extensions.getExtension(extensionId);
     assert.ok(extension, 'Extension should be discoverable by VS Code test host');
 
     await extension?.activate();

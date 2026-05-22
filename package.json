@@ -3,18 +3,19 @@
   "displayName": "Paste Rich Text to Markdown",
   "description": "Paste rich text from Microsoft Word and browsers as clean Markdown.",
   "version": "0.0.1",
-  "publisher": "ak",
+  "publisher": "ak287",
   "engines": {
     "vscode": "^1.96.0"
   },
   "categories": [
-    "Markdown",
+    "Formatters",
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:markdown",
-    "onCommand:richPaste.pasteAsMarkdown",
-    "onCommand:richPaste.showClipboardDebugInfo"
+    "onLanguage:markdown"
+  ],
+  "enabledApiProposals": [
+    "documentPaste"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -97,11 +98,17 @@
     "@types/vscode": "^1.96.0",
     "@vscode/test-electron": "^2.5.2",
     "glob": "^11.0.1",
-    "mocha": "^11.1.0",
+    "mocha": "^11.7.5",
     "typescript": "^5.8.2"
   },
   "dependencies": {
     "turndown": "^7.2.1",
     "turndown-plugin-gfm": "^1.0.2"
+  },
+  "overrides": {
+    "mocha": {
+      "diff": "^8.0.3",
+      "serialize-javascript": "^7.0.3"
+    }
   }
 }
