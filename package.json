@@ -1,9 +1,11 @@
 {
   "name": "paste-rtf-to-md",
   "displayName": "Paste Rich Text to Markdown",
-  "description": "Paste rich text from Microsoft Word and browsers as clean Markdown.",
+  "description": "Paste rich text from browsers as clean Markdown.",
   "version": "0.0.1",
   "publisher": "ak287",
+  "license": "MIT",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -14,9 +16,11 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
-  "enabledApiProposals": [
-    "documentPaste"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ak287/PasteRTFtoMD.git"
+  },
+  "enabledApiProposals": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
