@@ -1,6 +1,6 @@
 ﻿# Paste Rich Text to Markdown
 
-Paste rich text from Microsoft Word and web browsers into VS Code as Markdown.
+Paste rich text from web browsers into VS Code as Markdown.
 
 ## Features
 
@@ -24,11 +24,4 @@ Paste rich text from Microsoft Word and web browsers into VS Code as Markdown.
 - `richPaste.conversion.preserveLineBreaks`
 - `richPaste.conversion.enableTables`
 
-## Development
 
-```bash
-npm install
-npm run compile
-npm test
-npm run test:integration
-```
